@@ -1,0 +1,27 @@
+.orb-header {
+  color: #333;
+  border-bottom: 1px solid #CCC;
+}
+  .orb-header__blocks {
+    display: block;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    width: 74px;
+
+    @include mq($from: gel-bp-m) {
+      padding-top: 8px;
+      padding-bottom: 8px;
+      width: 84px;
+    }
+
+    img {
+      display: block;
+      height: 21px;
+      width: inherit;
+
+      @include mq($from: gel-bp-m) {
+        height: 24px;
+        width: inherit;
+      }
+    }
+  }
