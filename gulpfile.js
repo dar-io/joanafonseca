@@ -47,7 +47,8 @@ function logError(err) {
     case 'gulp-hb':
       errorNotifier.notify({
         title: 'Collider',
-        message: 'There was an error with Handlebars. See Log.',
+        message: 'There was an error with Handlebars. See Terminal.',
+        activate: 'com.apple.Terminal',
       });
       printError(err.message);
       break;
@@ -55,7 +56,8 @@ function logError(err) {
     case 'gulp-sass':
       errorNotifier.notify({
         title: 'Collider',
-        message: 'There was an error with Sass. See Log.',
+        message: 'There was an error with Sass. See Terminal.',
+        activate: 'com.apple.Terminal',
       });
       printError(err.message);
       break;
@@ -63,7 +65,8 @@ function logError(err) {
     default:
       errorNotifier.notify({
         title: 'Collider',
-        message: 'There was an error. See Log.',
+        message: 'There was an error. See Terminal.',
+        activate: 'com.apple.Terminal',
       });
       printError(err.message);
   }
@@ -124,6 +127,9 @@ gulp.task('handlebars', function () {
     .pipe(gulp.dest(build));
 });
 
+
+
+
 // SASS
 //
 
@@ -170,12 +176,25 @@ gulp.task('clean:assets', function () {
   ]);
 });
 
+
 gulp.task('clean:js', function () {
   return del([
     `${build}/js/**`,
     `!${build}/js`,
   ]);
 });
+
+
+
+gulp.task('clean', function () {
+
+  return gulp
+    .src([`${src}/**/keeper1.js`,`${src}/**/keeper2.js`,`${src}/**/CNAME`])
+    .pipe(plumber(logError))
+    .pipe(changed(build))
+    .pipe(gulp.dest(build));
+});
+
 
 // ASSETS
 //

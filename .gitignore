@@ -3,5 +3,6 @@
 collider/
 distribute/
 node_modules/
+.publish/
 
 *-matter
